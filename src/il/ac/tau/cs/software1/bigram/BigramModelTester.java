@@ -28,6 +28,12 @@ public class BigramModelTester {
     public static void main(String[] args) throws IOException {
         BigramModel sG = new BigramModel();
         String[] voc = sG.buildVocabularyIndex(ALL_YOU_NEED_FILENAME);
+        
+        //String[] voc2 = sG.buildVocabularyIndex("resources/bigram/the_man_who_was_thursday.txt");
+        //for (int i=0;i<voc2.length;i++)
+        //    if (voc2[i].equals("some_num"))
+        //        System.out.println(voc2[i]);
+
         if (voc.length != 5) {
             System.out.println("Error 1.1");
         }
