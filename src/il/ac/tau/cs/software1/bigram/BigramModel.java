@@ -1,7 +1,10 @@
 package il.ac.tau.cs.software1.bigram;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Locale;
@@ -127,6 +130,8 @@ public class BigramModel {
                         x = k;
                     if (vocabulary[k].equals(next))
                         y = k;
+                    if (x != -1 && y != -1)
+                        break;
                 }
                 if (x != -1 && y != -1)
                     counts[x][y]++;
@@ -141,7 +146,28 @@ public class BigramModel {
      * @pre: fileName is a legal file path
      */
     public void saveModel(String fileName) throws IOException { // Question 3
-        // TODO: implement
+        File voc_file = new File(fileName + File.separator + VOC_FILE_SUFFIX);
+        File counts_file = new File(fileName + File.separator + COUNTS_FILE_SUFFIX);
+        
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line;
+
+        BufferedWriter bw_voc = new BufferedWriter(new FileWriter(voc_file));
+        BufferedWriter bw_counts = new BufferedWriter(new FileWriter(counts_file));
+        int [][] counts_arr = this.mBigramCounts;
+        String[] vocab = this.mVocabulary;
+
+        bw_voc.write(""+vocab.length+" words"+"\r\n");                                     //first line of voc file - num of words
+
+        for (int i=0;i<vocab.length;i++){
+            bw_voc.write(""+i+","+vocab[i]+"\r\n");
+        }
+        for (int i=0;i<counts_arr.length;i++){
+            for (int k=0;k<counts_arr[i].length;k++){
+                if (counts_arr[i][j] != 0)
+                    bw_counts.write(""+i+","+k+":"+"\r\n");
+            }
+        }
     }
 
     /*
