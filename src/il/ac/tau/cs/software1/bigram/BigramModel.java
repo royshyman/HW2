@@ -148,7 +148,7 @@ public class BigramModel {
     public void saveModel(String fileName) throws IOException { // Question 3
         File voc_file = new File(fileName + File.separator + VOC_FILE_SUFFIX);
         File counts_file = new File(fileName + File.separator + COUNTS_FILE_SUFFIX);
-        
+
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line;
 
@@ -164,7 +164,7 @@ public class BigramModel {
         }
         for (int i=0;i<counts_arr.length;i++){
             for (int k=0;k<counts_arr[i].length;k++){
-                if (counts_arr[i][j] != 0)
+                if (counts_arr[i][k] != 0)
                     bw_counts.write(""+i+","+k+":"+"\r\n");
             }
         }
