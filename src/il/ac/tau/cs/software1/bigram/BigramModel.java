@@ -146,28 +146,27 @@ public class BigramModel {
      * @pre: fileName is a legal file path
      */
     public void saveModel(String fileName) throws IOException { // Question 3
-        File voc_file = new File(fileName + File.separator + VOC_FILE_SUFFIX);
-        File counts_file = new File(fileName + File.separator + COUNTS_FILE_SUFFIX);
-
-        BufferedReader br = new BufferedReader(new FileReader(fileName));
-        String line;
+        File voc_file = new File(fileName + VOC_FILE_SUFFIX);
+        File counts_file = new File(fileName + COUNTS_FILE_SUFFIX);
 
         BufferedWriter bw_voc = new BufferedWriter(new FileWriter(voc_file));
         BufferedWriter bw_counts = new BufferedWriter(new FileWriter(counts_file));
         int [][] counts_arr = this.mBigramCounts;
         String[] vocab = this.mVocabulary;
 
-        bw_voc.write(""+vocab.length+" words"+"\r\n");                                     //first line of voc file - num of words
+        bw_voc.write(""+vocab.length+" words"+"\n");                                     //first line of voc file - num of words
 
         for (int i=0;i<vocab.length;i++){
-            bw_voc.write(""+i+","+vocab[i]+"\r\n");
+            bw_voc.write(""+i+","+vocab[i]+"\n");
         }
         for (int i=0;i<counts_arr.length;i++){
             for (int k=0;k<counts_arr[i].length;k++){
                 if (counts_arr[i][k] != 0)
-                    bw_counts.write(""+i+","+k+":"+"\r\n");
+                    bw_counts.write(""+i+","+k+":"+counts_arr[i][k]+"\n");
             }
         }
+        bw_counts.close();
+        bw_voc.close();
     }
 
     /*
