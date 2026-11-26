@@ -179,10 +179,9 @@ public class BigramModel {
         String[] first_line = line.trim().split("\\s+");
         int voc_length = Integer.parseInt(first_line[0]);
         int count = 0;
-
         String[] new_vocab = new String[voc_length];
         while (count < voc_length && (line = br_voc.readLine()) != null){
-            String[] tokens = line.trim().split("[,:]");
+            String[] tokens = line.split(",",2);
             new_vocab[count] = tokens[1];
             count++;
         }
@@ -199,10 +198,6 @@ public class BigramModel {
         br_counts.close();
         mBigramCounts = new_counts;
         mVocabulary = new_vocab;
-        
-        
-        
-
     }
 
     /*
