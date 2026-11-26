@@ -49,7 +49,7 @@ public class PacmanPlayer extends PacmanGameObject {
 			// but only if it is not too heavy to carry. See the assignment for the exact rules.
 
 			if (inventoryComponent.getInventory().getTotalWeight()+bonus.getWeight() <= inventoryComponent.getMaxWeight()){
-				bonus.getTransformComponent().position = inventoryComponent.getInventoryPosition();
+				bonus.getTransformComponent().position = new Vector2(inventoryComponent.getInventoryPosition().x, inventoryComponent.getInventoryPosition().y);
 				inventoryComponent.getInventory().collect(bonus);
 				addScore((bonus.bonusScore));
 			}
